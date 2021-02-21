@@ -1,0 +1,16 @@
+.App {
+  /* font-family: sans-serif; */
+  /* text-align: center; */
+}
+.list {
+  display: flex;
+  flex-direction: column;
+}
+span {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
+  height: 20px;
+  widows: 50px;
+  border: 1px solid black;
+}

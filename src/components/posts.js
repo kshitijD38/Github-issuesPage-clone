@@ -14,7 +14,8 @@ const Posts = ({ state }) => {
                 id={index}
                 key={temp.id}
                 style={{
-                  color: `#${temp.color}`,
+                  color: `white`,
+                  backgroundColor: `#${temp.color}`,
                   fontSize: 25
                 }}
               >

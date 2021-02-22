@@ -46,30 +46,57 @@ function App() {
 
   return (
     <div className="App">
-      <input onChange={handleUserName} placeholder="Type UserName here..." />
-      <br />
-      <input ref={textInput2} placeholder="Type RepoName here... " />
-      <br />
-      <button onClick={handleRepo}>search</button>
+      <div className="searchBar">
+        <img src="http://pngimg.com/uploads/github/github_PNG83.png" />
+        {/* <img src="http://pngimg.com/uploads/github/github_PNG34.png" /> */}
+        {/* <div> */}
+        <input
+          className="input1"
+          onChange={handleUserName}
+          placeholder="Type UserName here..."
+        />
+        {/* <br /> */}
+        <input
+          className="input2"
+          ref={textInput2}
+          placeholder="Type RepoName here... "
+        />
+        {/* </div> */}
+        {/* <br /> */}
+        <button onClick={handleRepo}>search</button>
+      </div>
+      <span>
+        <h4>
+          <span className="usernameHead">{username} </span>
+          <span style={{ fontSize: "25px" }}>/</span>
+          <span className="repoHead">
+            <b> {repo}</b>
+          </span>
+        </h4>
+      </span>
       <div className="list">
         <ul>
           {state.items.map((item) => (
             <li key={item.id}>
               {item.title}
+              {/* <br /> */}
+              <span> </span>
               {item.labels.map((temp, index) => (
                 <span
                   id={index}
                   key={temp.id}
                   style={{
                     color: `#${temp.color}`,
-                    fontSize: 25
+                    fontSize: 25,
                   }}
                 >
                   {temp.name}
+                  <span> </span>
                 </span>
               ))}
             </li>
           ))}
+          <br />
         </ul>
       </div>
     </div>

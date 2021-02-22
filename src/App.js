@@ -1,13 +1,18 @@
 import "./styles.css";
-// import "./App.css";
+import Posts from "./components/posts.js";
+import Pagination from "./components/Pagination.js";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+
 // const apiURL2 =
 //   "https://api.github.com/repos/facebook/create-react-app/issues";
 function App() {
-  const [username, setUsername] = useState("kshitijD38");
-  const [repo, setRepo] = useState("React-Assignment-5---Digital-Clock");
+  // const [username, setUsername] = useState("kshitijD38");
+  const [username, setUsername] = useState("facebook");
+  const [repo, setRepo] = useState("create-react-app");
   const [state, setState] = useState({ items: [], isLoaded: false });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
 
   const apiURL1 = `https://api.github.com/users/${username}/repos`;
   const apiURL2 = `https://api.github.com/repos/${username}/${repo}/issues`;
@@ -44,6 +49,17 @@ function App() {
     setRepo(textInput2.current.value);
   };
 
+  console.log("state is ", state);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  console.log(currentPage, postsPerPage, indexOfLastPost, indexOfFirstPost);
+  const currentPosts = state.items.slice(indexOfFirstPost, indexOfLastPost);
+
+  console.log("currentPost is ", currentPosts);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="App">
       <div className="searchBar">
@@ -74,31 +90,13 @@ function App() {
           </span>
         </h4>
       </span>
-      <div className="list">
-        <ul>
-          {state.items.map((item) => (
-            <li key={item.id}>
-              {item.title}
-              {/* <br /> */}
-              <span> </span>
-              {item.labels.map((temp, index) => (
-                <span
-                  id={index}
-                  key={temp.id}
-                  style={{
-                    color: `#${temp.color}`,
-                    fontSize: 25,
-                  }}
-                >
-                  {temp.name}
-                  <span> </span>
-                </span>
-              ))}
-            </li>
-          ))}
-          <br />
-        </ul>
-      </div>
+      {/* <Posts state={state.items} /> */}
+      <Posts state={currentPosts} />
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={state.items.length}
+        paginate={paginate}
+      />
     </div>
   );
   // }
@@ -114,3 +112,28 @@ export default App;
           );
         })}
       </select> */
+
+/* <div className="list">
+        <ul>
+          {state.items.map((item) => (
+            <li key={item.id}>
+              {item.title}
+              <span> </span>
+              {item.labels.map((temp, index) => (
+                <span
+                  id={index}
+                  key={temp.id}
+                  style={{
+                    color: `#${temp.color}`,
+                    fontSize: 25
+                  }}
+                >
+                  {temp.name}
+                  <span> </span>
+                </span>
+              ))}
+            </li>
+          ))}
+          <br />
+        </ul>
+      </div> */

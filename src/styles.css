@@ -53,3 +53,10 @@ button {
   margin-inline-start: 20px;
   border-radius: 5px;
 }
+
+.page-link {
+  /* display: flex; */
+  /* border: 1px solid blue; */
+  height: 5px;
+  width: 10px;
+}

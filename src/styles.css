@@ -18,7 +18,7 @@ li {
 span {
   height: 20px;
   border-radius: 5px;
-  text-align: center;
+  /* text-align: center; */
   /* widows: 50px; */
   /* border: 1px solid black; */
 }
